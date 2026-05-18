@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soles by Dunni — Step Into Your Soles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --pure-white: #ffffff;
+    --gray-light: #e8e4de;
+    --gray-mid: #b0aa9f;
+    --gray-dark: #3a3632;
+    --accent: #c8b89a;
+    --wa-green: #25D366;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--white);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--white);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.35s ease, width 0.3s, height 0.3s;
+    mix-blend-mode: difference;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 3rem;
+    background: transparent;
+    transition: background 0.4s ease, padding 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(12px);
+    padding: 1rem 3rem;
+    border-bottom: 0.5px solid rgba(200,184,154,0.2);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    padding: 0.55rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 1px; background: var(--white); display: block; transition: all 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 8rem 3rem 4rem;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    font-weight: 900;
+    line-height: 0.92;
+    margin-bottom: 2rem;
+    color: var(--white);
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--gray-mid);
+    margin-bottom: 3rem;
+    max-width: 300px;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--white);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+  .btn-ghost {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    border: 0.5px solid var(--gray-dark);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .btn-ghost:hover { border-color: var(--white); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-image-slot {
+    width: 100%; height: 100%;
+    background: #1a1714;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    min-height: 100vh;
+    border-left: 0.5px solid rgba(200,184,154,0.12);
+  }
+  .hero-image-slot img {
+    width: 100%; height: 100%; object-fit: cover;
+    opacity: 0.85;
+  }
+  .image-placeholder {
+    width: 120px; height: 120px;
+    border: 0.5px solid var(--gray-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .image-placeholder svg { opacity: 0.3; }
+  .placeholder-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+  }
+
+  .hero-bottom-bar {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    display: flex; gap: 0;
+    border-top: 0.5px solid rgba(200,184,154,0.1);
+    z-index: 2;
+  }
+  .hero-stat {
+    flex: 1;
+    padding: 1.2rem 2rem;
+    border-right: 0.5px solid rgba(200,184,154,0.1);
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 0.5px solid rgba(200,184,154,0.15);
+    border-bottom: 0.5px solid rgba(200,184,154,0.15);
+    background: var(--black);
+    padding: 1rem 0;
+  }
+  .marquee-track {
+    display: flex; gap: 0;
+    animation: marquee 22s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    font-style: italic;
+    letter-spacing: 0.15em;
+    color: var(--gray-mid);
+    padding: 0 2.5rem;
+    flex-shrink: 0;
+  }
+  .marquee-dot {
+    color: var(--accent);
+    font-style: normal;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* SECTION STRUCTURE */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--gray-mid);
+    font-style: italic;
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 3.5rem;
+  }
+
+  /* PRODUCTS */
+  #collection { background: var(--black); }
+  .filter-row {
+    display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    background: transparent;
+    border: 0.5px solid var(--gray-dark);
+    padding: 0.55rem 1.4rem;
+    cursor: none;
+    transition: all 0.3s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    color: var(--black);
+    background: var(--white);
+    border-color: var(--white);
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(200,184,154,0.08);
+  }
+  .product-card {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    cursor: none;
+  }
+  .product-card:hover { transform: scale(1.015); z-index: 2; }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.06); }
+
+  .product-img-wrap {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #141210;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .product-img-placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 100%; height: 100%; min-height: 320px;
+    color: var(--gray-dark);
+  }
+  .product-img-placeholder svg { margin-bottom: 0.75rem; opacity: 0.3; }
+  .product-img-placeholder span {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+  }
+
+  .product-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: var(--white);
+    color: var(--black);
+    padding: 0.3rem 0.7rem;
+  }
+  .product-badge.new { background: var(--accent); }
+
+  .product-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10,10,10,0.6);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .wa-btn {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--wa-green);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.85rem 1.6rem;
+    text-decoration: none;
+    border: none; cursor: none;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .wa-btn:hover { transform: translateY(-2px); background: #1ebe5d; }
+  .wa-btn svg { flex-shrink: 0; }
+
+  .product-info {
+    padding: 1.2rem 1.4rem;
+    border-top: 0.5px solid rgba(200,184,154,0.1);
+  }
+  .product-category {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .product-footer {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .product-price {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+  .product-price span {
+    font-size: 0.7rem;
+    color: var(--gray-mid);
+    margin-left: 0.3rem;
+    font-weight: 300;
+  }
+  .wa-btn-small {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: var(--wa-green);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.9rem;
+    text-decoration: none;
+    border: none; cursor: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .wa-btn-small:hover { background: #1ebe5d; transform: translateY(-1px); }
+
+  /* ABOUT STRIP */
+  .about-strip {
+    background: var(--white);
+    color: var(--black);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+  .about-content {
+    padding: 6rem 4rem;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .about-content .section-label { color: var(--gray-dark); }
+  .about-content .section-title { color: var(--black); }
+  .about-content .section-title em { color: #8a7560; }
+  .about-content p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: #5a5248;
+    line-height: 1.9;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .about-image {
+    background: #d9d2c8;
+    min-height: 400px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    border-left: 0.5px solid rgba(0,0,0,0.06);
+  }
+  .about-image .image-placeholder { border-color: rgba(0,0,0,0.15); }
+  .about-image .placeholder-label { color: rgba(0,0,0,0.3); }
+
+  /* FEATURES */
+  .features {
+    background: #0d0b09;
+    border-top: 0.5px solid rgba(200,184,154,0.1);
+    border-bottom: 0.5px solid rgba(200,184,154,0.1);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .feature-item {
+    padding: 2.5rem 2rem;
+    border-right: 0.5px solid rgba(200,184,154,0.1);
+    text-align: center;
+  }
+  .feature-item:last-child { border-right: none; }
+  .feature-icon {
+    width: 44px; height: 44px;
+    border: 0.5px solid rgba(200,184,154,0.25);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+    color: var(--accent);
+  }
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .feature-desc {
+    font-size: 0.72rem;
+    color: var(--gray-mid);
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+  }
+
+  /* TESTIMONIALS */
+  #testimonials { background: var(--black); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(200,184,154,0.08);
+    margin-top: 3rem;
+  }
+  .testimonial-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+  }
+  .testimonial-stars {
+    display: flex; gap: 0.25rem; margin-bottom: 1rem;
+    color: var(--accent);
+  }
+  .testimonial-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--gray-mid);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .testimonial-author {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  /* CONTACT / FOOTER */
+  footer {
+    background: #060504;
+    border-top: 0.5px solid rgba(200,184,154,0.12);
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+    padding: 5rem 3rem 4rem;
+    border-bottom: 0.5px solid rgba(200,184,154,0.08);
+  }
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+  .footer-social { display: flex; gap: 1rem; }
+  .social-link {
+    width: 36px; height: 36px;
+    border: 0.5px solid var(--gray-dark);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-mid);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    transition: all 0.3s;
+    cursor: none;
+  }
+  .social-link:hover { border-color: var(--white); color: var(--white); background: rgba(200,184,154,0.05); }
+  .footer-col-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+  .footer-links a {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .footer-links a:hover { color: var(--white); }
+  .footer-contact-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .contact-icon {
+    width: 18px; height: 18px; flex-shrink: 0;
+    color: var(--accent); margin-top: 2px;
+  }
+  .footer-contact-item p {
+    font-size: 0.8rem;
+    color: var(--gray-mid);
+    line-height: 1.5;
+  }
+  .footer-contact-item a {
+    color: var(--gray-mid);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-contact-item a:hover { color: var(--white); }
+  .footer-bottom {
+    padding: 1.5rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--gray-dark);
+    text-transform: uppercase;
+  }
+  .footer-wa-cta {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--wa-green);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.3s;
+    cursor: none;
+  }
+  .footer-wa-cta:hover { background: #1ebe5d; transform: translateY(-1px); }
+
+  /* MOBILE NAV */
+  .mobile-menu {
+    position: fixed; inset: 0;
+    background: var(--black);
+    z-index: 999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    nav.scrolled { padding: 1rem 1.5rem; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 7rem 1.5rem 7rem; }
+    .hero-bottom-bar { position: relative; grid-column: span 1; flex-wrap: wrap; }
+    .hero-stat { padding: 1rem 1.2rem; min-width: 50%; }
+    section { padding: 4rem 1.5rem; }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-item:nth-child(2) { border-right: none; }
+    .feature-item:nth-child(3) { border-right: 0.5px solid rgba(200,184,154,0.1); }
+    .feature-item:nth-child(4) { border-right: none; }
+    .feature-item { border-top: 0.5px solid rgba(200,184,154,0.1); }
+    .feature-item:nth-child(1), .feature-item:nth-child(2) { border-top: none; }
+    .about-strip { grid-template-columns: 1fr; }
+    .about-image { display: none; }
+    .about-content { padding: 4rem 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; padding: 1.5rem; text-align: center; }
+    body { cursor: auto; }
+    .cursor, .cursor-ring { display: none; }
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* SCROLL INDICATOR */
+  .scroll-line {
+    position: absolute; bottom: 5rem; right: 3rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    z-index: 3;
+  }
+  .scroll-line span {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line-bar {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--gray-mid), transparent);
+    animation: scroll-pulse 2s ease infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { transform: scaleY(1); opacity: 0.5; }
+    50% { transform: scaleY(1.3); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#collection" onclick="closeMobile()">Collection</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Soles by Dunni</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/2349035836141?text=Hello%2C%20I%27d%20like%20to%20place%20an%20order%20from%20Soles%20by%20Dunni!" class="nav-cta" target="_blank" rel="noopener">Order Now</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0; position:relative;">
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-up visible">Lagos, Nigeria · Handcrafted Footwear</p>
+    <h1 class="hero-title fade-up visible">Step<br><em>Into</em><br>Your<br>Soles</h1>
+    <p class="hero-tagline fade-up visible">And your soul leads the way. Sandals & loafers crafted for the woman who moves with intention.</p>
+    <div class="hero-actions fade-up visible">
+      <a href="#collection" class="btn-primary">Shop the Collection</a>
+      <a href="https://wa.me/2349035836141" target="_blank" rel="noopener" class="btn-ghost">WhatsApp Us</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-image-slot">
+      <div class="image-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      </div>
+      <p class="placeholder-label">Hero Product Shot</p>
+    </div>
+  </div>
+  <div class="scroll-line">
+    <span>Scroll</span>
+    <div class="scroll-line-bar"></div>
+  </div>
+  <div class="hero-bottom-bar">
+    <div class="hero-stat">
+      <span class="hero-stat-num">500+</span>
+      <span class="hero-stat-label">Happy Customers</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">100%</span>
+      <span class="hero-stat-label">Handcrafted</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">2+</span>
+      <span class="hero-stat-label">Years of Craft</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Sandals <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Loafers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Mules <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Slides <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Handcrafted in Lagos <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Step Into Your Soles <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Order via WhatsApp <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Sandals <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Loafers <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Mules <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Slides <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Handcrafted in Lagos <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Step Into Your Soles <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Order via WhatsApp <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="features-grid">
+    <div class="feature-item fade-up">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <p class="feature-title">Premium Quality</p>
+      <p class="feature-desc">Every pair crafted with care and high-grade materials that last.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <p class="feature-title">Fast Delivery</p>
+      <p class="feature-desc">Swift dispatch across Lagos and nationwide shipping available.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      </div>
+      <p class="feature-title">Made with Love</p>
+      <p class="feature-desc">Each shoe is a piece of art, stitched with intention and soul.</p>
+    </div>
+    <div class="feature-item fade-up">
+      <div class="feature-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      </div>
+      <p class="feature-title">Easy Ordering</p>
+      <p class="feature-desc">Just tap WhatsApp — we respond quickly and guide you through.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section id="collection">
+  <span class="section-label">The Collection</span>
+  <h2 class="section-title">Crafted for <em>Every Step</em></h2>
+  <p class="section-sub">Sandals and loafers designed to complement your stride. Tap any piece to order directly on WhatsApp.</p>
+
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterProducts('all', this)">All Styles</button>
+    <button class="filter-btn" onclick="filterProducts('sandal', this)">Sandals & Slides</button>
+    <button class="filter-btn" onclick="filterProducts('loafer', this)">Loafers & Mules</button>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+
+    <!-- PRODUCT 1 -->
+    <div class="product-card" data-category="sandal">
+      <div class="product-img-wrap">
+        <div class="product-img-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <span>Product Photo</span>
+        </div>
+        <span class="product-badge new">New In</span>
+        <div class="product-overlay">
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Classic%20Strap%20Sandal*.%20Please%20share%20more%20details%20and%20availability%20%F0%9F%99%8F" class="wa-btn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Sandal</p>
+        <p class="product-name">Classic Strap Sandal</p>
+        <div class="product-footer">
+          <p class="product-price">₦18,000 <span>/ pair</span></p>
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Classic%20Strap%20Sandal*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn-small" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="product-card" data-category="loafer">
+      <div class="product-img-wrap">
+        <div class="product-img-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <span>Product Photo</span>
+        </div>
+        <span class="product-badge">Bestseller</span>
+        <div class="product-overlay">
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Chunky%20Sole%20Loafer*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Loafer</p>
+        <p class="product-name">Chunky Sole Loafer</p>
+        <div class="product-footer">
+          <p class="product-price">₦22,000 <span>/ pair</span></p>
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Chunky%20Sole%20Loafer*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn-small" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card" data-category="sandal">
+      <div class="product-img-wrap">
+        <div class="product-img-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <span>Product Photo</span>
+        </div>
+        <div class="product-overlay">
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Double%20Buckle%20Slide*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Slide</p>
+        <p class="product-name">Double Buckle Slide</p>
+        <div class="product-footer">
+          <p class="product-price">₦16,500 <span>/ pair</span></p>
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Double%20Buckle%20Slide*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn-small" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 4 -->
+    <div class="product-card" data-category="loafer">
+      <div class="product-img-wrap">
+        <div class="product-img-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <span>Product Photo</span>
+        </div>
+        <span class="product-badge new">New In</span>
+        <div class="product-overlay">
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Open-Toe%20Mule*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Mule</p>
+        <p class="product-name">Open-Toe Mule</p>
+        <div class="product-footer">
+          <p class="product-price">₦20,000 <span>/ pair</span></p>
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Open-Toe%20Mule*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn-small" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 5 -->
+    <div class="product-card" data-category="sandal">
+      <div class="product-img-wrap">
+        <div class="product-img-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <span>Product Photo</span>
+        </div>
+        <span class="product-badge">Bestseller</span>
+        <div class="product-overlay">
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Crossover%20Sandal*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Sandal</p>
+        <p class="product-name">Crossover Sandal</p>
+        <div class="product-footer">
+          <p class="product-price">₦17,000 <span>/ pair</span></p>
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Crossover%20Sandal*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn-small" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCT 6 -->
+    <div class="product-card" data-category="loafer">
+      <div class="product-img-wrap">
+        <div class="product-img-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="8" y1="2" x2="8" y2="22"/></svg>
+          <span>Product Photo</span>
+        </div>
+        <div class="product-overlay">
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Flat%20Square-Toe%20Mule*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order on WhatsApp
+          </a>
+        </div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Mule</p>
+        <p class="product-name">Flat Square-Toe Mule</p>
+        <div class="product-footer">
+          <p class="product-price">₦19,500 <span>/ pair</span></p>
+          <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20interested%20in%20the%20*Flat%20Square-Toe%20Mule*.%20Please%20share%20more%20details%20%F0%9F%99%8F" class="wa-btn-small" target="_blank" rel="noopener">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2zm0 18.18c-1.61 0-3.11-.433-4.411-1.19l-.316-.188-3.146.724.757-3.063-.207-.328a9.97 9.97 0 01-1.497-5.135c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Order
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about-strip" id="about">
+  <div class="about-content">
+    <span class="section-label">The Story</span>
+    <h2 class="section-title">Crafted with <em>Soul</em></h2>
+    <p>Soles by Dunni was born from a love of beautiful, intentional footwear. Every pair tells a story — of craftsmanship, care, and the belief that what you wear on your feet shapes how you move through the world.</p>
+    <p>Based in Lagos, we create sandals and loafers that pair effortlessly with your lifestyle. From the streets of Lagos Island to your most cherished moments, Dunni's soles carry you.</p>
+    <div style="margin-top: 2rem; display: flex; gap: 2rem;">
+      <div>
+        <span style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: #0a0a0a; display: block;">500+</span>
+        <span style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8a7560;">Pairs Sold</span>
+      </div>
+      <div>
+        <span style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: #0a0a0a; display: block;">100%</span>
+        <span style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8a7560;">Handcrafted</span>
+      </div>
+    </div>
+  </div>
+  <div class="about-image">
+    <div class="image-placeholder">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+    </div>
+    <p class="placeholder-label" style="color: rgba(0,0,0,0.3);">Brand / Portrait Photo</p>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <span class="section-label">What They Say</span>
+  <h2 class="section-title">Loved by <em>Every Sole</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"I ordered the chunky loafers and I haven't taken them off since. The quality is absolutely stunning and delivery was so fast!"</p>
+      <p class="testimonial-author">Adaeze O. — Lagos</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Dunni is so professional and responsive on WhatsApp. My sandals fit perfectly and the packaging was so beautiful. Will definitely order again!"</p>
+      <p class="testimonial-author">Funmi B. — Abuja</p>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"These are the most comfortable mules I own. The attention to detail is unmatched — you can tell every pair is made with love."</p>
+      <p class="testimonial-author">Chisom M. — Port Harcourt</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <span class="footer-brand-name">Soles by Dunni</span>
+      <p class="footer-tagline">Step into your soles<br>and your soul leads the way.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/soles____dunni" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@solesby__dunni" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+        </a>
+        <a href="https://wa.me/2349035836141" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-title">Navigate</span>
+      <ul class="footer-links">
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Reach Us</span>
+      <div class="footer-contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        <p><a href="https://wa.me/2349035836141">09035836141</a></p>
+      </div>
+      <div class="footer-contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <p><a href="https://www.instagram.com/soles____dunni" target="_blank" rel="noopener">@soles____dunni</a></p>
+      </div>
+      <div class="footer-contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
+        <p><a href="https://www.tiktok.com/@solesby__dunni" target="_blank" rel="noopener">@solesby__dunni</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Soles by Dunni — All rights reserved</p>
+    <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%99%8F" class="footer-wa-cta" target="_blank" rel="noopener">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2z"/></svg>
+      Chat to Order
+    </a>
+  </div>
+</footer>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
+  });
+  function animateRing() {
+    rx += (mx - rx - 18) * 0.12;
+    ry += (my - ry - 18) * 0.12;
+    ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu
+  function toggleMobile() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Filter
+  function filterProducts(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card => {
+      if (cat === 'all' || card.dataset.category === cat) {
+        card.style.display = '';
+        card.style.animation = 'fadeIn 0.4s ease forwards';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-up:not(.visible)');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
