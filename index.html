@@ -33,21 +33,21 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --black: #0a0a0a;
   --white: #f5f2ed;
   --gray-light: #e8e4de;
-  --gray-mid: #c0bab4;
-  --gray-dark: #3a3632;
-  --accent: #c8b89a;
+  --gray-mid: #dcd6cd; /* Brighter warmth for excellent visibility on dark backgrounds */
+  --gray-dark: #5c5650; /* Lighter border gray for visible contrast */
+  --accent: #d8c9b0; /* Slightly lighter gold for premium readability */
   --wa-green: #25D366;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans-serif;font-weight:400;overflow-x:hidden;cursor:none;font-size:16px;line-height:1.6;}
+body{background:var(--black);color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;overflow-x:hidden;cursor:none;font-size:16px;line-height:1.7;}
 
 /* CURSOR */
 .cursor{width:10px;height:10px;background:var(--white);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference;}
@@ -66,21 +66,21 @@ nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);padding:1
 .hamburger span{width:24px;height:1px;background:var(--white);display:block;}
 
 /* MOBILE MENU */
-.mobile-menu{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem;transform:translateX(100%);transition:transform 0.4s ease;}
+.mobile-menu{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transform:translateX(100%);transition:transform 0.4s ease;padding:2rem;}
 .mobile-menu.open{transform:translateX(0);}
-.mobile-menu a{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,6vw,2.2rem);font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;text-align:center;white-space:nowrap;}
 .mobile-menu a:hover{color:var(--accent);}
 
 /* HERO */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 3.5rem 8rem;position:relative;z-index:2;}
 .hero-eyebrow{font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);margin-bottom:1.8rem;font-weight:500;}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:900;line-height:1.15;margin-bottom:1.8rem;color:var(--white);}
-.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--gray-mid);margin-bottom:3rem;max-width:340px;line-height:1.75;font-weight:400;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4.5rem);font-weight:900;line-height:1.15;margin-bottom:1.8rem;color:var(--white);}
+.hero-tagline{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gray-mid);margin-bottom:3rem;max-width:380px;line-height:1.7;font-weight:400;}
 .hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
 .btn-primary{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.3s;cursor:none;font-weight:600;}
 .btn-primary:hover{background:var(--accent);transform:translateY(-2px);}
-.btn-ghost{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);border:0.5px solid rgba(200,184,154,0.4);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:border-color 0.3s,transform 0.3s;cursor:none;font-weight:500;}
+.btn-ghost{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);border:0.5px solid rgba(200,184,154,0.4);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:border-color 0.3s,transform 0.3s;cursor:none;font-weight:500;background:transparent;}
 .btn-ghost:hover{border-color:var(--white);transform:translateY(-2px);}
 .hero-right{position:relative;overflow:hidden;}
 .hero-img{width:100%;height:100%;min-height:100vh;object-fit:cover;display:block;opacity:0.88;}
@@ -98,7 +98,7 @@ nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);padding:1
 /* MARQUEE */
 .marquee-wrap{overflow:hidden;border-top:0.5px solid rgba(200,184,154,0.15);border-bottom:0.5px solid rgba(200,184,154,0.15);padding:1.1rem 0;}
 .marquee-track{display:flex;animation:marquee 22s linear infinite;white-space:nowrap;}
-.marquee-item{font-family:'Cormorant Garamond',serif;font-size:0.9rem;font-style:italic;letter-spacing:0.15em;color:var(--gray-mid);padding:0 2.5rem;flex-shrink:0;}
+.marquee-item{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;letter-spacing:0.15em;color:var(--gray-mid);padding:0 2.5rem;flex-shrink:0;}
 .marquee-dot{color:var(--accent);font-style:normal;}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -107,7 +107,7 @@ section{padding:6rem 3rem;}
 .section-label{font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:block;font-weight:500;}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.8rem);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:1.2rem;}
 .section-title em{font-style:italic;color:var(--accent);}
-.section-sub{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--gray-mid);font-style:italic;line-height:1.75;max-width:520px;margin-bottom:3.5rem;font-weight:400;}
+.section-sub{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gray-mid);line-height:1.75;max-width:520px;margin-bottom:3.5rem;font-weight:500;}
 
 /* FEATURES */
 .features{background:#0d0b09;border-top:0.5px solid rgba(200,184,154,0.1);border-bottom:0.5px solid rgba(200,184,154,0.1);}
@@ -123,7 +123,7 @@ section{padding:6rem 3rem;}
 .filter-row{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap;}
 .filter-btn{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);background:transparent;border:0.5px solid var(--gray-dark);padding:0.6rem 1.5rem;cursor:pointer;transition:all 0.3s;font-weight:500;}
 .filter-btn.active,.filter-btn:hover{color:var(--black);background:var(--white);border-color:var(--white);}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:rgba(200,184,154,0.08);}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:1px;background:rgba(200,184,154,0.08);}
 .product-card{background:var(--black);position:relative;overflow:hidden;transition:transform 0.4s ease;cursor:none;}
 .product-card:hover{transform:scale(1.015);z-index:2;}
 .product-card:hover .product-overlay{opacity:1;}
@@ -150,7 +150,7 @@ section{padding:6rem 3rem;}
 .about-content .section-label{color:var(--gray-dark);}
 .about-content .section-title{color:var(--black);}
 .about-content .section-title em{color:#8a7560;}
-.about-content p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:#4a4440;line-height:1.9;margin-bottom:1.1rem;font-style:italic;}
+.about-content p{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:#2d2a27;line-height:1.8;margin-bottom:1.2rem;font-weight:500;}
 .about-image{overflow:hidden;min-height:400px;}
 .about-image img{width:100%;height:100%;object-fit:cover;display:block;}
 .about-stats{display:flex;gap:2.5rem;margin-top:2.5rem;}
@@ -165,7 +165,8 @@ section{padding:6rem 3rem;}
 .delivery-icon{color:var(--accent);flex-shrink:0;margin-top:3px;}
 .delivery-item-title{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--white);margin-bottom:0.3rem;}
 .delivery-item-text{font-size:0.85rem;color:var(--gray-mid);line-height:1.65;}
-.size-table{width:100%;border-collapse:collapse;margin-top:0.5rem;}
+.size-table-container{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.size-table{width:100%;border-collapse:collapse;margin-top:0.5rem;min-width:280px;}
 .size-table th{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);padding:0.75rem 1rem;text-align:left;border-bottom:0.5px solid rgba(200,184,154,0.2);font-weight:600;}
 .size-table td{font-size:0.85rem;color:var(--gray-mid);padding:0.7rem 1rem;border-bottom:0.5px solid rgba(200,184,154,0.08);}
 .size-table tr:hover td{color:var(--white);background:rgba(200,184,154,0.04);}
@@ -177,7 +178,7 @@ section{padding:6rem 3rem;}
 .carousel-slide{min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,184,154,0.08);}
 .testimonial-card{background:var(--black);padding:2.8rem 2.5rem;}
 .testimonial-stars{font-size:1rem;letter-spacing:0.15em;margin-bottom:1.2rem;color:var(--accent);}
-.testimonial-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:#d8d2cc;line-height:1.85;margin-bottom:1.75rem;font-weight:400;}
+.testimonial-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#eae4dd;line-height:1.8;margin-bottom:1.75rem;font-weight:400;}
 .testimonial-author{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);font-weight:600;}
 .testimonial-location{font-size:0.68rem;color:var(--gray-mid);letter-spacing:0.1em;margin-top:0.2rem;}
 .carousel-controls{display:flex;align-items:center;gap:1.5rem;margin-top:2.5rem;}
@@ -187,11 +188,121 @@ section{padding:6rem 3rem;}
 .carousel-dot{width:20px;height:1px;background:var(--gray-dark);cursor:pointer;transition:background 0.3s;}
 .carousel-dot.active{background:var(--white);}
 
+/* MODAL STYLES */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-content {
+  background: #0d0b09;
+  border: 0.5px solid rgba(200, 184, 154, 0.25);
+  width: 90%;
+  max-width: 480px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+.modal-overlay.open .modal-content {
+  transform: translateY(0);
+}
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  color: var(--gray-mid);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.modal-close:hover {
+  color: var(--white);
+}
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.modal-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--gray-mid);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+.form-group input, .form-group textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 0.5px solid var(--gray-dark);
+  color: var(--white);
+  padding: 0.8rem 1rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+/* STAR RATING */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+.star-rating input {
+  display: none;
+}
+.star-rating label {
+  font-size: 1.6rem;
+  color: var(--gray-dark);
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-bottom: 0;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+  color: var(--accent);
+}
+
 /* FOOTER */
 footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
 .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:4rem;padding:5rem 3rem 4rem;border-bottom:0.5px solid rgba(200,184,154,0.08);}
 .footer-brand-name{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;letter-spacing:0.05em;color:var(--white);margin-bottom:0.5rem;display:block;}
-.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--gray-mid);margin-bottom:2rem;line-height:1.65;}
+.footer-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--gray-mid);margin-bottom:2rem;line-height:1.65;}
 .footer-social{display:flex;gap:1rem;}
 .social-link{width:38px;height:38px;border:0.5px solid var(--gray-dark);display:flex;align-items:center;justify-content:center;color:var(--gray-mid);text-decoration:none;transition:all 0.3s;cursor:pointer;}
 .social-link:hover{border-color:var(--white);color:var(--white);}
@@ -231,6 +342,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   .about-strip{grid-template-columns:1fr;}
   .about-image{display:none;}
   .about-content{padding:4rem 1.5rem;}
+  .about-stats{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:2rem;}
   .carousel-slide{grid-template-columns:1fr;}
   .delivery-grid{grid-template-columns:1fr;gap:2.5rem;}
   .footer-top{grid-template-columns:1fr;gap:2.5rem;padding:3rem 1.5rem;}
@@ -264,7 +376,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="https://wa.me/2349035836141?text=Hello%2C%20I%27d%20like%20to%20place%20an%20order%20from%20Soles%20by%20Dunni!" class="nav-cta" target="_blank" rel="noopener">Order Now</a>
+  <a href="https://wa.me/2349035836141?text=Hello!%20I%27m%20visiting%20your%20website%20and%20would%20like%20to%20place%20an%20order." class="nav-cta" target="_blank" rel="noopener">Order Now</a>
   <div class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
 </nav>
 
@@ -276,7 +388,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
     <p class="hero-tagline fade-up visible">Premium sandals &amp; loafers crafted for the woman who moves with intention.</p>
     <div class="hero-actions fade-up visible">
       <a href="#collection" class="btn-primary">Shop the Collection</a>
-      <a href="https://wa.me/2349035836141" target="_blank" rel="noopener" class="btn-ghost">WhatsApp Us</a>
+      <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20on%20your%20website%20and%20want%20to%20chat%20about%20your%20handcrafted%20footwear." target="_blank" rel="noopener" class="btn-ghost">WhatsApp Us</a>
     </div>
   </div>
   <div class="hero-right" style="position:relative;overflow:hidden;">
@@ -571,27 +683,64 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   <div class="delivery-grid">
     <div>
       <h3>Delivery Information</h3>
-      <div class="delivery-item"><svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg><div><p class="delivery-item-title">Lagos Delivery</p><p class="delivery-item-text">1–3 business days. Delivery fee varies by area — confirm on WhatsApp.</p></div></div>
-      <div class="delivery-item"><svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><div><p class="delivery-item-title">Nationwide Shipping</p><p class="delivery-item-text">We ship to Abuja, Port Harcourt, Ibadan and all states. 3–5 business days.</p></div></div>
-      <div class="delivery-item"><svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><p class="delivery-item-title">Pickup Available</p><p class="delivery-item-text">Prefer to pick up in Lagos? WhatsApp us to arrange a convenient location.</p></div></div>
-      <div class="delivery-item"><svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><div><p class="delivery-item-title">Payment</p><p class="delivery-item-text">Bank transfer on order confirmation. Full payment before dispatch.</p></div></div>
+      <div class="delivery-item">
+        <svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div>
+          <p class="delivery-item-title">Custom Crafted (Made to Order)</p>
+          <p class="delivery-item-text">Since most of our footwear is made to order, please allow 7–10 working days for production and quality checks before dispatch.</p>
+        </div>
+      </div>
+      <div class="delivery-item">
+        <svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        <div>
+          <p class="delivery-item-title">Lagos Delivery</p>
+          <p class="delivery-item-text">5–7 working days after production. Delivery fee varies by area — confirm on WhatsApp.</p>
+        </div>
+      </div>
+      <div class="delivery-item">
+        <svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <div>
+          <p class="delivery-item-title">Nationwide Shipping</p>
+          <p class="delivery-item-text">We ship to Abuja, Port Harcourt, Ibadan and all other states. 5–7 working days after production.</p>
+        </div>
+      </div>
+      <div class="delivery-item">
+        <svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <p class="delivery-item-title">Pickup Available</p>
+          <p class="delivery-item-text">Prefer to pick up in Lagos? WhatsApp us to arrange a convenient location once your order is ready.</p>
+        </div>
+      </div>
+      <div class="delivery-item">
+        <svg class="delivery-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <div>
+          <p class="delivery-item-title">Payment</p>
+          <p class="delivery-item-text">Bank transfer on order confirmation. Full payment before production starts.</p>
+        </div>
+      </div>
     </div>
     <div>
       <h3>Size Guide</h3>
-      <table class="size-table">
-        <thead><tr><th>NG / EU</th><th>UK</th><th>Foot Length</th></tr></thead>
-        <tbody>
-          <tr><td>36</td><td>3.5</td><td>22.5 cm</td></tr>
-          <tr><td>37</td><td>4</td><td>23.5 cm</td></tr>
-          <tr><td>38</td><td>5</td><td>24.0 cm</td></tr>
-          <tr><td>39</td><td>6</td><td>25.0 cm</td></tr>
-          <tr><td>40</td><td>6.5</td><td>25.5 cm</td></tr>
-          <tr><td>41</td><td>7.5</td><td>26.5 cm</td></tr>
-          <tr><td>42</td><td>8</td><td>27.0 cm</td></tr>
-        </tbody>
-      </table>
+      <div class="size-table-container">
+        <table class="size-table">
+          <thead><tr><th>NG / EU</th><th>UK</th><th>Foot Length</th></tr></thead>
+          <tbody>
+            <tr><td>36</td><td>3.5</td><td>22.5 cm</td></tr>
+            <tr><td>37</td><td>4</td><td>23.5 cm</td></tr>
+            <tr><td>38</td><td>5</td><td>24.0 cm</td></tr>
+            <tr><td>39</td><td>6</td><td>25.0 cm</td></tr>
+            <tr><td>40</td><td>6.5</td><td>25.5 cm</td></tr>
+            <tr><td>41</td><td>7.5</td><td>26.5 cm</td></tr>
+            <tr><td>42</td><td>8</td><td>27.0 cm</td></tr>
+            <tr><td>43</td><td>9</td><td>28.0 cm</td></tr>
+            <tr><td>44</td><td>9.5</td><td>28.5 cm</td></tr>
+            <tr><td>45</td><td>10.5</td><td>29.5 cm</td></tr>
+            <tr><td>46</td><td>11</td><td>30.0 cm</td></tr>
+          </tbody>
+        </table>
+      </div>
       <p style="font-size:0.85rem;color:var(--gray-mid);margin-top:1.2rem;line-height:1.65;">Not sure of your size? WhatsApp us your foot length in cm and we'll find your perfect fit.</p>
-      <a href="https://wa.me/2349035836141?text=Hi!%20I%20need%20help%20with%20sizing%20%F0%9F%91%9F" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;margin-top:1.5rem;font-size:0.7rem;">Ask About Sizing</a>
+      <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20on%20your%20website%20and%20need%20help%20with%20shoe%20sizing%20%F0%9F%91%9F" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;margin-top:1.5rem;font-size:0.7rem;">Ask About Sizing</a>
     </div>
   </div>
 </section>
@@ -601,6 +750,9 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   <span class="section-label">What They Say</span>
   <h2 class="section-title">Loved by <em>Every Sole</em></h2>
   <p class="section-sub">Real words from real customers who walk with us.</p>
+  <button class="btn-ghost" onclick="openReviewModal()" style="margin-bottom:2.5rem;font-size:0.7rem;letter-spacing:0.2em;display:inline-flex;align-items:center;gap:0.5rem;cursor:none;">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:-1px;"><path d="M12 5v14M5 12h14"/></svg>Share Your Experience
+  </button>
   <div class="carousel-wrap">
     <div class="carousel-track" id="carouselTrack">
 
@@ -710,6 +862,40 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   </div>
 </section>
 
+<!-- REVIEW MODAL -->
+<div class="modal-overlay" id="reviewModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeReviewModal()" aria-label="Close modal">&times;</button>
+    <h3 class="modal-title">Share Your Journey</h3>
+    <p class="modal-subtitle">We would love to hear how your Soles by Dunni carry you.</p>
+    <form id="reviewForm" onsubmit="submitReview(event)">
+      <div class="form-group">
+        <label for="reviewName">Your Name</label>
+        <input type="text" id="reviewName" required placeholder="e.g., Adaeze O.">
+      </div>
+      <div class="form-group">
+        <label for="reviewLocation">Your Location</label>
+        <input type="text" id="reviewLocation" required placeholder="e.g., Lekki, Lagos">
+      </div>
+      <div class="form-group">
+        <label>Your Rating</label>
+        <div class="star-rating">
+          <input type="radio" name="rating" id="star5" value="5" required><label for="star5" title="5 stars">★</label>
+          <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars">★</label>
+          <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars">★</label>
+          <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars">★</label>
+          <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star">★</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="reviewText">Your Story / Feedback</label>
+        <textarea id="reviewText" rows="4" required placeholder="How did they fit? How did they feel?"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;border:none;letter-spacing:0.2em;cursor:none;margin-top:0.5rem;">Submit Review</button>
+    </form>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer id="contact">
   <div class="footer-top">
@@ -723,7 +909,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
         <a href="https://www.tiktok.com/@solesby__dunni" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>
         </a>
-        <a href="https://wa.me/2349035836141" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20on%20your%20website%20and%20wanted%20to%20say%20hello%20%F0%9F%91%9F" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2z"/></svg>
         </a>
       </div>
@@ -739,7 +925,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
     </div>
     <div>
       <span class="footer-col-title">Reach Us</span>
-      <div class="footer-contact-item"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><p><a href="https://wa.me/2349035836141">09035836141</a></p></div>
+      <div class="footer-contact-item"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><p><a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20on%20your%20website%20and%20would%20like%20to%20chat%20about%20placing%20an%20order.">09035836141</a></p></div>
       <div class="footer-contact-item"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><p><a href="https://www.instagram.com/soles____dunni" target="_blank" rel="noopener">@soles____dunni</a></p></div>
       <div class="footer-contact-item"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg><p><a href="https://www.tiktok.com/@solesby__dunni" target="_blank" rel="noopener">@solesby__dunni</a></p></div>
       <div class="footer-contact-item"><svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><p>Lagos, Nigeria</p></div>
@@ -747,7 +933,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2026 Soles by Dunni · Lagos, Nigeria · All rights reserved</p>
-    <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27d%20like%20to%20place%20an%20order%20%F0%9F%91%9F" class="footer-wa-cta" target="_blank" rel="noopener">
+    <a href="https://wa.me/2349035836141?text=Hi%20Dunni!%20I%27m%20on%20your%20website%20and%20would%20like%20to%20chat%20about%20placing%20an%20order%20%F0%9F%91%9F" class="footer-wa-cta" target="_blank" rel="noopener">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.99 2C6.468 2 2 6.468 2 11.99c0 1.776.454 3.442 1.244 4.901L2 22l5.299-1.218C8.733 21.567 10.327 22 11.99 22 17.52 22 22 17.52 22 11.99 22 6.468 17.52 2 11.99 2z"/></svg>
       Chat to Order
     </a>
@@ -777,7 +963,7 @@ function filterProducts(cat,btn){
 
 // Carousel
 let slide=0;
-const totalSlides=4;
+let totalSlides=4;
 function goToSlide(n){
   slide=n;
   document.getElementById('carouselTrack').style.transform=`translateX(-${slide*100}%)`;
@@ -786,11 +972,132 @@ function goToSlide(n){
 function nextSlide(){goToSlide((slide+1)%totalSlides);}
 function prevSlide(){goToSlide((slide-1+totalSlides)%totalSlides);}
 // Auto-advance every 6s
-setInterval(nextSlide,6000);
+let carouselInterval = setInterval(nextSlide,6000);
+
+// Modal functions
+function openReviewModal(){
+  document.getElementById('reviewModal').classList.add('open');
+}
+function closeReviewModal(){
+  document.getElementById('reviewModal').classList.remove('open');
+}
+function showSuccessMessage(){
+  const toast = document.createElement('div');
+  toast.style.position = 'fixed';
+  toast.style.bottom = '2rem';
+  toast.style.right = '2rem';
+  toast.style.background = 'var(--white)';
+  toast.style.color = 'var(--black)';
+  toast.style.padding = '1.2rem 2.2rem';
+  toast.style.border = '0.5px solid var(--accent)';
+  toast.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+  toast.style.zIndex = '9999';
+  toast.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+  toast.style.fontSize = '0.85rem';
+  toast.style.letterSpacing = '0.15em';
+  toast.style.textTransform = 'uppercase';
+  toast.style.opacity = '0';
+  toast.style.transform = 'translateY(20px)';
+  toast.style.transition = 'opacity 0.4s, transform 0.4s';
+  toast.innerHTML = '✨ Review Submitted Successfully! Thank you.';
+  document.body.appendChild(toast);
+
+  // Animate in
+  setTimeout(() => {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+  }, 100);
+
+  // Animate out
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      toast.remove();
+    }, 400);
+  }, 4000);
+}
+function submitReview(e){
+  e.preventDefault();
+  const name = document.getElementById('reviewName').value;
+  const location = document.getElementById('reviewLocation').value;
+  const rating = parseInt(document.querySelector('input[name="rating"]:checked').value);
+  const text = document.getElementById('reviewText').value;
+
+  // Create new slide
+  const track = document.getElementById('carouselTrack');
+  const newSlide = document.createElement('div');
+  newSlide.className = 'carousel-slide';
+  
+  // Custom styled stars
+  let starStr = '★'.repeat(rating) + '☆'.repeat(5-rating);
+
+  newSlide.innerHTML = `
+    <div class="testimonial-card">
+      <div class="testimonial-stars">${starStr}</div>
+      <p class="testimonial-text">"${text}"</p>
+      <p class="testimonial-author">${name}</p>
+      <p class="testimonial-location">${location}</p>
+    </div>
+    <div class="testimonial-card" style="opacity: 0.25; pointer-events: none;">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Every step tells a story. Share your journey with us."</p>
+      <p class="testimonial-author">Soles by Dunni</p>
+      <p class="testimonial-location">Lagos, Nigeria</p>
+    </div>
+    <div class="testimonial-card" style="opacity: 0.25; pointer-events: none;">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Premium handcrafted sandals, slides, and loafers."</p>
+      <p class="testimonial-author">Soles by Dunni</p>
+      <p class="testimonial-location">Lagos, Nigeria</p>
+    </div>
+  `;
+  track.appendChild(newSlide);
+
+  // Add dot
+  const dotsContainer = document.getElementById('carouselDots');
+  const newDot = document.createElement('div');
+  newDot.className = 'carousel-dot';
+  const newIndex = totalSlides;
+  newDot.onclick = () => goToSlide(newIndex);
+  dotsContainer.appendChild(newDot);
+
+  // Increment totalSlides
+  totalSlides++;
+
+  // Close modal and reset form
+  closeReviewModal();
+  document.getElementById('reviewForm').reset();
+
+  // Show a beautiful custom alert
+  showSuccessMessage();
+
+  // Reset auto-advance timer to prevent sliding away immediately
+  clearInterval(carouselInterval);
+  carouselInterval = setInterval(nextSlide, 6000);
+
+  // Go to the newly added slide
+  setTimeout(() => {
+    goToSlide(newIndex);
+  }, 600);
+}
 
 // Scroll fade-in
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.fade-up:not(.visible)').forEach(el=>obs.observe(el));
+
+// Dynamic WhatsApp links for products
+document.querySelectorAll('.product-card').forEach(card => {
+  const nameEl = card.querySelector('.product-name');
+  if (nameEl) {
+    const productName = nameEl.textContent.trim();
+    const waText = `Hi Dunni! I'm on your website and interested in ordering the *${productName}* 👟`;
+    const waUrl = `https://wa.me/2349035836141?text=${encodeURIComponent(waText)}`;
+    card.querySelectorAll('.wa-btn, .wa-btn-small').forEach(btn => {
+      btn.setAttribute('href', waUrl);
+    });
+  }
+});
 </script>
 </body>
 </html>
