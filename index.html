@@ -16,6 +16,8 @@
 <meta name="geo.placename" content="Lagos">
 <meta name="geo.position" content="6.5244;3.3792">
 <meta name="ICBM" content="6.5244, 3.3792">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M10 44c0-1 1-3 3-4l2-2c1-1 1-2 0-3l-2-2c-1-1 0-2 1-2l4-1c1 0 2 0 3 1l1 2c1 1 2 0 2-1l2-8c0-1 1-2 2-2h6c1 0 2 1 2 2l2 8c0 1 1 2 2 1l1-2c1-1 2-1 3-1l4 1c1 0 2 1 1 2l-2 2c-1 1-1 2 0 3l2 2c2 1 3 3 3 5 0 10-12 16-24 16S10 54 10 44z' fill='%23d8c9b0' stroke='%230a0a0a' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M18 38c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4zM32 34c-3 0-6-3-6-6s3-6 6-6 6 3 6 6-3 6-6 6zM42 28c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4z' fill='%230a0a0a' opacity='0.3'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a0a'/%3E%3Cpath d='M10 44c0-1 1-3 3-4l2-2c1-1 1-2 0-3l-2-2c-1-1 0-2 1-2l4-1c1 0 2 0 3 1l1 2c1 1 2 0 2-1l2-8c0-1 1-2 2-2h6c1 0 2 1 2 2l2 8c0 1 1 2 2 1l1-2c1-1 2-1 3-1l4 1c1 0 2 1 1 2l-2 2c-1 1-1 2 0 3l2 2c2 1 3 3 3 5 0 10-12 16-24 16S10 54 10 44z' fill='%23d8c9b0' stroke='%23f5f2ed' stroke-width='1.5'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://solesbydunni.com/">
 <link rel="sitemap" type="application/xml" title="Sitemap" href="https://solesbydunni.com/sitemap.xml">
 
@@ -70,7 +72,7 @@ nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);padding:1
 .nav-links{display:flex;gap:2.5rem;list-style:none;}
 .nav-links a{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray-mid);text-decoration:none;transition:color 0.3s;}
 .nav-links a:hover{color:var(--white);}
-.nav-cta{font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--white);padding:0.6rem 1.5rem;text-decoration:none;transition:background 0.3s;cursor:none;}
+.nav-cta{font-size:0.75rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);background:var(--white);padding:0.6rem 1.5rem;text-decoration:none;transition:background 0.3s;cursor:pointer;}
 .nav-cta:hover{background:var(--accent);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
 .hamburger span{width:24px;height:1px;background:var(--white);display:block;}
@@ -81,6 +83,16 @@ nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);padding:1
 .mobile-menu a{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,6vw,2.2rem);font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;text-align:center;white-space:nowrap;}
 .mobile-menu a:hover{color:var(--accent);}
 
+/* ACCESSIBILITY */
+.skip-link{position:absolute;top:-100px;left:1rem;background:var(--white);color:var(--black);padding:0.6rem 1.2rem;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;z-index:10000;transition:top 0.3s;}
+.skip-link:focus{top:1rem;}
+
+/* BUTTONS */
+.btn-primary{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:all 0.3s;font-weight:600;border-radius:2px;}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 25px rgba(216,201,176,0.2);}
+.btn-ghost{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);border:0.5px solid rgba(200,184,154,0.4);padding:1rem 2.2rem;text-decoration:none;display:inline-block;transition:all 0.3s;font-weight:500;background:transparent;border-radius:2px;}
+.btn-ghost:hover{border-color:var(--white);transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,255,255,0.1);}
+
 /* HERO */
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
 .hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 3.5rem 8rem;position:relative;z-index:2;}
@@ -88,10 +100,10 @@ nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);padding:1
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,4.5rem);font-weight:900;line-height:1.15;margin-bottom:1.8rem;color:var(--white);}
 .hero-tagline{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gray-mid);margin-bottom:3rem;max-width:380px;line-height:1.7;font-weight:400;}
 .hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;}
-.btn-primary{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:background 0.3s,transform 0.3s;cursor:none;font-weight:600;}
-.btn-primary:hover{background:var(--accent);transform:translateY(-2px);}
-.btn-ghost{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);border:0.5px solid rgba(200,184,154,0.4);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:border-color 0.3s,transform 0.3s;cursor:none;font-weight:500;background:transparent;}
-.btn-ghost:hover{border-color:var(--white);transform:translateY(-2px);}
+.btn-primary{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--black);background:var(--white);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:all 0.3s;cursor:pointer;font-weight:600;border-radius:2px;}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 25px rgba(216,201,176,0.2);}
+.btn-ghost{font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);border:0.5px solid rgba(200,184,154,0.4);padding:1rem 2rem;text-decoration:none;display:inline-block;transition:all 0.3s;cursor:pointer;font-weight:500;background:transparent;border-radius:2px;}
+.btn-ghost:hover{border-color:var(--white);transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,255,255,0.1);}
 .hero-right{position:relative;overflow:hidden;}
 .hero-img{width:100%;height:100%;min-height:100vh;object-fit:cover;display:block;opacity:0.88;}
 .hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(10,10,10,0.5) 0%,rgba(10,10,10,0) 55%);}
@@ -109,7 +121,7 @@ nav.scrolled{background:rgba(10,10,10,0.96);backdrop-filter:blur(12px);padding:1
 .marquee-wrap{overflow:hidden;border-top:0.5px solid rgba(200,184,154,0.15);border-bottom:0.5px solid rgba(200,184,154,0.15);padding:1.1rem 0;}
 .marquee-track{display:flex;animation:marquee 22s linear infinite;white-space:nowrap;}
 .marquee-item{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;letter-spacing:0.15em;color:var(--gray-mid);padding:0 2.5rem;flex-shrink:0;}
-.marquee-dot{color:var(--accent);font-style:normal;}
+.marquee-dot{color:var(--accent);font-style:normal;margin:0 0.3rem;}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* SECTION */
@@ -130,29 +142,29 @@ section{padding:6rem 3rem;}
 
 /* PRODUCTS */
 #collection{background:var(--black);}
-.filter-row{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap;}
-.filter-btn{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);background:transparent;border:0.5px solid var(--gray-dark);padding:0.6rem 1.5rem;cursor:pointer;transition:all 0.3s;font-weight:500;}
+.filter-row{display:flex;gap:0.5rem;margin-bottom:3.5rem;flex-wrap:wrap;}
+.filter-btn{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray-mid);background:transparent;border:0.5px solid var(--gray-dark);padding:0.7rem 1.8rem;cursor:pointer;transition:all 0.3s;font-weight:500;border-radius:2px;}
 .filter-btn.active,.filter-btn:hover{color:var(--black);background:var(--white);border-color:var(--white);}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:1px;background:rgba(200,184,154,0.08);}
-.product-card{background:var(--black);position:relative;overflow:hidden;transition:transform 0.4s ease;cursor:none;}
-.product-card:hover{transform:scale(1.015);z-index:2;}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:1.5rem;background:transparent;padding:0.5rem 0;}
+.product-card{background:var(--black);position:relative;overflow:hidden;transition:transform 0.4s ease,box-shadow 0.4s ease;cursor:pointer;border:0.5px solid rgba(200,184,154,0.08);}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.3);z-index:2;}
 .product-card:hover .product-overlay{opacity:1;}
-.product-card:hover .product-img{transform:scale(1.06);}
+.product-card:hover .product-img{transform:scale(1.05);}
 .product-img-wrap{aspect-ratio:3/4;overflow:hidden;background:#141210;position:relative;}
 .product-img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease;display:block;}
-.product-badge{position:absolute;top:1rem;left:1rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;background:var(--white);color:var(--black);padding:0.3rem 0.75rem;font-weight:600;}
+.product-badge{position:absolute;top:1.2rem;left:1.2rem;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;background:var(--white);color:var(--black);padding:0.4rem 0.9rem;font-weight:600;z-index:2;}
 .product-badge.new{background:var(--accent);}
-.product-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.65);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;}
-.wa-btn{display:flex;align-items:center;gap:0.6rem;background:var(--wa-green);color:#fff;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:0.9rem 1.6rem;text-decoration:none;transition:transform 0.2s,background 0.2s;}
-.wa-btn:hover{transform:translateY(-2px);background:#1ebe5d;}
-.product-info{padding:1.3rem 1.5rem;border-top:0.5px solid rgba(200,184,154,0.1);}
-.product-category{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;font-weight:500;}
-.product-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--white);margin-bottom:0.65rem;line-height:1.3;}
-.product-footer{display:flex;align-items:center;justify-content:space-between;}
-.product-price{font-size:0.95rem;font-weight:600;color:var(--white);}
-.product-price span{font-size:0.72rem;color:var(--gray-mid);margin-left:0.3rem;font-weight:400;}
-.wa-btn-small{display:flex;align-items:center;gap:0.4rem;background:var(--wa-green);color:#fff;font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.55rem 1rem;text-decoration:none;transition:background 0.2s,transform 0.2s;}
-.wa-btn-small:hover{background:#1ebe5d;transform:translateY(-1px);}
+.product-overlay{position:absolute;inset:0;background:rgba(10,10,10,0.75);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.4s ease;z-index:3;}
+.wa-btn{display:flex;align-items:center;gap:0.6rem;background:var(--wa-green);color:#fff;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;padding:1rem 2rem;text-decoration:none;transition:transform 0.3s,background 0.3s,box-shadow 0.3s;border-radius:2px;box-shadow:0 4px 15px rgba(37,211,102,0.3);}
+.wa-btn:hover{transform:translateY(-2px);background:#1ebe5d;box-shadow:0 6px 20px rgba(37,211,102,0.4);}
+.product-info{padding:1.6rem 1.8rem;border-top:0.5px solid rgba(200,184,154,0.1);}
+.product-category{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:500;}
+.product-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:0.8rem;line-height:1.3;}
+.product-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.product-price{font-size:1rem;font-weight:600;color:var(--white);letter-spacing:-0.01em;}
+.product-price span{font-size:0.75rem;color:var(--gray-mid);margin-left:0.3rem;font-weight:400;}
+.wa-btn-small{display:flex;align-items:center;gap:0.4rem;background:var(--wa-green);color:#fff;font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.2rem;text-decoration:none;transition:background 0.3s,transform 0.3s,box-shadow 0.3s;border-radius:2px;box-shadow:0 2px 8px rgba(37,211,102,0.2);}
+.wa-btn-small:hover{background:#1ebe5d;transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,211,102,0.3);}
 
 /* ABOUT */
 .about-strip{background:var(--white);color:var(--black);display:grid;grid-template-columns:1fr 1fr;}
@@ -188,6 +200,8 @@ section{padding:6rem 3rem;}
 .carousel-slide{min-width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,184,154,0.08);}
 .testimonial-card{background:var(--black);padding:2.8rem 2.5rem;}
 .testimonial-stars{font-size:1rem;letter-spacing:0.15em;margin-bottom:1.2rem;color:var(--accent);}
+.testimonial-stars svg{width:14px;height:14px;display:inline-block;margin-right:1px;vertical-align:middle;}
+.testimonial-stars svg[fill="currentColor"]{fill:var(--accent);}
 .testimonial-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#eae4dd;line-height:1.8;margin-bottom:1.75rem;font-weight:400;}
 .testimonial-author{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--white);font-weight:600;}
 .testimonial-location{font-size:0.68rem;color:var(--gray-mid);letter-spacing:0.1em;margin-top:0.2rem;}
@@ -290,22 +304,29 @@ section{padding:6rem 3rem;}
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 .star-rating input {
   display: none;
 }
 .star-rating label {
-  font-size: 1.6rem;
-  color: var(--gray-dark);
   cursor: pointer;
-  transition: color 0.2s;
-  margin-bottom: 0;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+}
+.star-rating label svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--accent);
+  display: block;
 }
 .star-rating label:hover,
 .star-rating label:hover ~ label,
 .star-rating input:checked ~ label {
-  color: var(--accent);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 /* ORDER MODAL */
@@ -397,6 +418,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<header id="site-header">
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#collection" onclick="closeMobile()">Collection</a>
@@ -419,6 +441,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   <a href="https://wa.me/2349035836141?text=Hello!%20I%27m%20visiting%20your%20website%20and%20would%20like%20to%20place%20an%20order." class="nav-cta" target="_blank" rel="noopener">Order Now</a>
   <div class="hamburger" id="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
 </nav>
+</header>
 
 <main id="main-content">
 
@@ -448,20 +471,20 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="marquee-item">Sandals <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Loafers <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Mules <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Slides <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Handcrafted in Lagos <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Step Into Your Soles <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Order via WhatsApp <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Sandals <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Loafers <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Mules <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Slides <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Handcrafted in Lagos <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Step Into Your Soles <span class="marquee-dot">✦</span></span>
-    <span class="marquee-item">Order via WhatsApp <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Sandals <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Loafers <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Mules <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Slides <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Handcrafted in Lagos <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Step Into Your Soles <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Order via WhatsApp <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Sandals <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Loafers <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Mules <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Slides <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Handcrafted in Lagos <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Step Into Your Soles <span class="marquee-dot">&bull;</span></span>
+    <span class="marquee-item">Order via WhatsApp <span class="marquee-dot">&bull;</span></span>
   </div>
 </div>
 
@@ -763,7 +786,10 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
 
       <!-- DELIVERY CALCULATOR -->
       <div class="calc-widget">
-        <h4>📅 When could I receive my order?</h4>
+        <h4>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:middle;margin-right:6px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          When could I receive my order?
+        </h4>
         <p>Select a date and your location for an estimate. Location is optional.</p>
         <div class="calc-row">
           <div>
@@ -805,7 +831,10 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
             <span class="calc-result-value" id="rTransit">5–7 working days</span>
           </div>
           <div class="calc-result-arrival" id="rArrival"></div>
-          <p class="calc-result-note">⚡ These are estimates. Confirm exact delivery fee and timeline on WhatsApp.</p>
+          <p class="calc-result-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            These are estimates. Confirm exact delivery fee and timeline on WhatsApp.
+          </p>
         </div>
       </div>
     </div>
@@ -840,7 +869,7 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
   <span class="section-label">What They Say</span>
   <h2 class="section-title">Loved by <em>Every Sole</em></h2>
   <p class="section-sub">Real words from real customers who walk with us.</p>
-  <button class="btn-ghost" onclick="openReviewModal()" style="margin-bottom:2.5rem;font-size:0.7rem;letter-spacing:0.2em;display:inline-flex;align-items:center;gap:0.5rem;cursor:none;">
+  <button class="btn-ghost" onclick="openReviewModal()" style="margin-bottom:2.5rem;font-size:0.7rem;letter-spacing:0.2em;display:inline-flex;align-items:center;gap:0.5rem;cursor:pointer;">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-top:-1px;"><path d="M12 5v14M5 12h14"/></svg>Share Your Experience
   </button>
   <div class="carousel-wrap">
@@ -849,19 +878,19 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
       <!-- SLIDE 1: reviews 1–3 -->
       <div class="carousel-slide">
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"I ordered the Chunky Sole Loafers and I haven't taken them off since. The quality is absolutely stunning and delivery was so fast. Dunni is truly gifted."</p>
           <p class="testimonial-author">Adaeze O.</p>
           <p class="testimonial-location">Lagos Island</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"Dunni is so professional and responsive on WhatsApp. My sandals fit perfectly and the packaging was beautiful. I've already placed a second order!"</p>
           <p class="testimonial-author">Funmi B.</p>
           <p class="testimonial-location">Abuja</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"These are the most comfortable mules I own. The attention to detail is unmatched — you can tell every pair is made with genuine love and care."</p>
           <p class="testimonial-author">Chisom M.</p>
           <p class="testimonial-location">Port Harcourt</p>
@@ -871,19 +900,19 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
       <!-- SLIDE 2: reviews 4–6 -->
       <div class="carousel-slide">
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"I bought the Classic Strap Sandals for my sister's wedding and got so many compliments. Everyone was asking where I got them. Will always shop here!"</p>
           <p class="testimonial-author">Temi A.</p>
           <p class="testimonial-location">Victoria Island, Lagos</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"Ordering was so easy — I just sent a WhatsApp message and Dunni guided me through everything. Shoes arrived beautifully wrapped. 10 out of 10."</p>
           <p class="testimonial-author">Ngozi E.</p>
           <p class="testimonial-location">Lekki, Lagos</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"The Crossover Sandals are my everyday go-to now. They're stylish yet incredibly comfortable — I wear them from the office to evening outings."</p>
           <p class="testimonial-author">Blessing I.</p>
           <p class="testimonial-location">Surulere, Lagos</p>
@@ -893,19 +922,19 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
       <!-- SLIDE 3: reviews 7–9 -->
       <div class="carousel-slide">
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"Fast delivery to Ibadan! I was worried about getting shoes delivered outside Lagos but it was seamless. The loafers are gorgeous and fit true to size."</p>
           <p class="testimonial-author">Yetunde F.</p>
           <p class="testimonial-location">Ibadan</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"I've been searching for quality handmade shoes in Nigeria for so long. Soles by Dunni is exactly what I was looking for — the craftsmanship is elite."</p>
           <p class="testimonial-author">Amaka C.</p>
           <p class="testimonial-location">Enugu</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"Bought the Double Buckle Slides and the Ankle Strap Sandals in the same order. Both pairs are stunning. My friends now all want to know about this brand!"</p>
           <p class="testimonial-author">Damilola T.</p>
           <p class="testimonial-location">Ikoyi, Lagos</p>
@@ -915,19 +944,19 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
       <!-- SLIDE 4: reviews 10–12 -->
       <div class="carousel-slide">
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"The Tassel Loafers are absolutely perfect. I wore them to a work event and everyone thought they were from a luxury international brand. Dunni, you're amazing!"</p>
           <p class="testimonial-author">Kemi O.</p>
           <p class="testimonial-location">Ajah, Lagos</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"The sizing guide was so helpful — I used my foot length and got the exact right fit. The Open-Toe Mules are so chic and go with literally everything I wear."</p>
           <p class="testimonial-author">Hauwa S.</p>
           <p class="testimonial-location">Abuja</p>
         </div>
         <div class="testimonial-card">
-          <div class="testimonial-stars">★★★★★</div>
+          <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <p class="testimonial-text">"I've ordered 3 pairs across different styles and every single one has been perfect. Consistent quality, beautiful packaging, and Dunni's customer service is unmatched."</p>
           <p class="testimonial-author">Adaobi N.</p>
           <p class="testimonial-location">Ikeja, Lagos</p>
@@ -1052,11 +1081,11 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
       <div class="form-group">
         <label>Your Rating</label>
         <div class="star-rating">
-          <input type="radio" name="rating" id="star5" value="5" required><label for="star5" title="5 stars">★</label>
-          <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars">★</label>
-          <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars">★</label>
-          <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars">★</label>
-          <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star">★</label>
+          <input type="radio" name="rating" id="star5" value="5" required><label for="star5" title="5 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
+          <input type="radio" name="rating" id="star4" value="4"><label for="star4" title="4 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
+          <input type="radio" name="rating" id="star3" value="3"><label for="star3" title="3 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
+          <input type="radio" name="rating" id="star2" value="2"><label for="star2" title="2 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
+          <input type="radio" name="rating" id="star1" value="1"><label for="star1" title="1 star"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></label>
         </div>
       </div>
       <div class="form-group">
@@ -1067,6 +1096,8 @@ footer{background:#060504;border-top:0.5px solid rgba(200,184,154,0.12);}
     </form>
   </div>
 </div>
+
+</main>
 
 <!-- FOOTER -->
 <footer id="contact">
@@ -1144,7 +1175,7 @@ function goToSlide(n){
 function nextSlide(){goToSlide((slide+1)%totalSlides);}
 function prevSlide(){goToSlide((slide-1+totalSlides)%totalSlides);}
 // Auto-advance every 6s
-let carouselInterval = setInterval(nextSlide,6000);
+let carouselInterval = setInterval(nextSlide,8000);
 
 // Modal functions
 function openReviewModal(){
@@ -1171,7 +1202,7 @@ function showSuccessMessage(){
   toast.style.opacity = '0';
   toast.style.transform = 'translateY(20px)';
   toast.style.transition = 'opacity 0.4s, transform 0.4s';
-  toast.innerHTML = '✨ Review Submitted Successfully! Thank you.';
+  toast.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:6px;"><path d="M20 6L9 17l-5-5"/></svg> Review Submitted Successfully! Thank you.';
   document.body.appendChild(toast);
 
   // Animate in
@@ -1202,7 +1233,9 @@ function submitReview(e){
   newSlide.className = 'carousel-slide';
   
   // Custom styled stars
-  let starStr = '★'.repeat(rating) + '☆'.repeat(5-rating);
+  const starSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+  const emptySvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+  let starStr = starSvg.repeat(rating) + emptySvg.repeat(5-rating);
 
   newSlide.innerHTML = `
     <div class="testimonial-card">
@@ -1212,13 +1245,13 @@ function submitReview(e){
       <p class="testimonial-location">${location}</p>
     </div>
     <div class="testimonial-card" style="opacity: 0.25; pointer-events: none;">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
       <p class="testimonial-text">"Every step tells a story. Share your journey with us."</p>
       <p class="testimonial-author">Soles by Dunni</p>
       <p class="testimonial-location">Lagos, Nigeria</p>
     </div>
     <div class="testimonial-card" style="opacity: 0.25; pointer-events: none;">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars"><svg class="star-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
       <p class="testimonial-text">"Premium handcrafted sandals, slides, and loafers."</p>
       <p class="testimonial-author">Soles by Dunni</p>
       <p class="testimonial-location">Lagos, Nigeria</p>
@@ -1263,7 +1296,7 @@ document.querySelectorAll('.product-card').forEach(card => {
   const nameEl = card.querySelector('.product-name');
   if (nameEl) {
     const productName = nameEl.textContent.trim();
-    const waText = `Hi Dunni! I'm on your website and interested in ordering the *${productName}* 👟`;
+    const waText = `Hi Dunni! I'm on your website and interested in ordering the *${productName}*`;
     const waUrl = `https://wa.me/2349035836141?text=${encodeURIComponent(waText)}`;
     card.querySelectorAll('.wa-btn, .wa-btn-small').forEach(btn => {
       btn.setAttribute('href', waUrl);
